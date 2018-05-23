@@ -1,0 +1,11 @@
+<div el-header>
+    <el-menu [model]="0" (modelChange)="handle($event)" class="el-menu-demo" mode="horizontal"
+      active-text-color="#ffd04b"
+      text-color="#444">
+      <el-menu-item index="1">Home</el-menu-item>
+      <el-submenu class="rigth_menu" index="2" [title]="user">
+        <el-menu-item (click)="logOut()" index="2-1">Log Out</el-menu-item>
+      </el-submenu>
+      
+    </el-menu>
+  </div>
