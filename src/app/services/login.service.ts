@@ -6,9 +6,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { CookieService } from 'ngx-cookie-service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class LoginService {
 
   private userId: string = null;
@@ -71,10 +69,15 @@ export class LoginService {
       }
     });
   }
+
+  getToken(){
+    return localStorage.getItem(GC_AUTH_TOKEN);
+  }
   
   logout() {
     this.apollo.getClient().resetStore();
-    this.cookieService.set( 'token', "");
+    localStorage.removeItem(GC_USER_ID);
+    localStorage.removeItem(GC_AUTH_TOKEN);
   }
 
 }

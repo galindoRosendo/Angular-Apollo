@@ -36,9 +36,12 @@ export class SignInComponent implements OnInit {
       .subscribe(({ data }) => {
         console.log('got data', data);
         this.cookieService.set( 'token', data.tokenAuth.token );
+        let tokenTmp= data.tokenAuth.token;
         let dataToken = this.loginService.verifyUser(data.tokenAuth.token)
           .subscribe(({data})=>{
             console.log('Usuario',data);
+            this.loginService.saveUserData(data.verifyToken.payload.username, tokenTmp);
+            console.info(data.verifyToken.payload.username + ':' + tokenTmp);
             this.access(true);
           },(error) => {
             this.notify["error"](error);

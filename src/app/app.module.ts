@@ -24,6 +24,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { setContext } from 'apollo-link-context';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpTokenInterceptor } from "./interceptors/http-token-interceptor";
+import { LoginService } from "./services/login.service";
 
 
 
@@ -48,7 +51,7 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [CookieService],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }, CookieService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
@@ -56,7 +59,7 @@ export class AppModule {
   constructor(
     private apollo: Apollo,
     private httpLink: HttpLink,
-    private cookieService: CookieService 
+    private cookieService: CookieService
   ) {
 
     const http = httpLink.create({uri: 'http://localhost:8000/graphql'});
