@@ -1,0 +1,15 @@
+language: node_js
+
+#Before scripts
+install:
+  - npm install
+
+#Build app
+script:
+  - npm run build
+
+#SaveList
+branches:
+  only:
+  - master
+  - develop
