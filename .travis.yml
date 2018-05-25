@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "8.9"
+
+#Before scripts
+install:
+  - npm install -g typescript
+  - npm install -g @angular/cli
+  - npm install
+
+#Build app
+script:
+  - npm run build
+
+#SaveList
+branches:
+  only:
+  - master
+  - develop
