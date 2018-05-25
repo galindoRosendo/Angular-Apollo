@@ -19,7 +19,7 @@ import { LoginService } from '../services/login.service';
 export class MenuComponent implements OnInit {
 
   
-  private user : String = "Sesion"
+  public user : String = "Sesion"
 
   constructor(
     private loginService: LoginService,
