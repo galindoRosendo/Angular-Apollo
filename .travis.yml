@@ -1,7 +1,11 @@
 language: node_js
+node_js:
+  - "8.9"
 
 #Before scripts
 install:
+  - npm install -g typescript
+  - npm install -g @angular/cli
   - npm install
 
 #Build app
